@@ -74,5 +74,6 @@ class VoteRepository():
 
 class VoteRepositoryFactory():
 
-    def create(self, session):
+    @classmethod
+    def create(cls, session):
         return VoteRepository(session)
