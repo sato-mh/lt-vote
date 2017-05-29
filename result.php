@@ -1,6 +1,7 @@
 <?php
 
 include_once("sessions.php");
+include_once("functions.php");
 
 $result_raw0 = file_get_contents("http://116.118.226.94:8080/votes?conferenceId=5&term=0");
 $result0 = json_decode($result_raw0);

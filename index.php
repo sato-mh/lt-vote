@@ -1,9 +1,5 @@
 <?php
 
-function h($string) {
-    return htmlspecialchars($string);
-}
-
 session_start();
 $_SESSION['token'] = session_id();
 
@@ -15,6 +11,7 @@ if (isset($_COOKIE['uuid'])){
 }
 
 include_once("sessions.php");
+include_once("functions.php");
 
 ?>
 <!DOCTYPE html>
