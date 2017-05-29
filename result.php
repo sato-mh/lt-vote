@@ -42,7 +42,7 @@ arsort($result1);
             <div class="group">
                 <h3 class="heading is-lg">前半</h3>
                 <table class="table is-stripe is-line is-center">
-                    <tr>
+                    <tr class="is-paint">
                         <th>順位</th>
                         <th>LT名</th>
                         <th>得票数</th>
@@ -66,7 +66,7 @@ $count += 1;
             <div class="group">
                 <h3 class="heading is-lg">後半</h3>
                 <table class="table is-stripe is-line is-center">
-                    <tr>
+                    <tr class="is-paint">
                         <th>順位</th>
                         <th>LT名</th>
                         <th>得票数</th>
