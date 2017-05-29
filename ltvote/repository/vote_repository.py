@@ -1,4 +1,4 @@
-from ltvote import orm, domain
+from ltvote import domain, orm
 
 
 class VoteRepository():
@@ -39,6 +39,13 @@ class VoteRepository():
         self.session = session
 
     def save(self, vote):
+        record = self.session.query(orm.Vote).filter_by(
+            user_id=vote.user_id,
+            conference_id=vote.conference_id,
+            term=vote.term
+        ).first()
+        if record is not None:
+            raise domain.AlreadySavedError
         record = self._vote_to_record(vote)
         self.session.add(record)
         self.session.flush()
