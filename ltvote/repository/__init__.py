@@ -1,1 +1,1 @@
-from vote_repository import VoteRepository, VoteRepositoryFactory
+from .vote_repository import VoteRepository, VoteRepositoryFactory
