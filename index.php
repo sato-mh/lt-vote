@@ -129,7 +129,8 @@ foreach ($sessions_term1 as $index => $name) {
                 $.ajax({
                     type: "post",
                     url: url,
-                    data: request
+                    contentType: "application/json",
+                    data: JSON.stringify(request)
                 }).then(function(data) {
                     var message = JSON.parse(data)["message"];
                     form.parent(".form-wrapper").html("<p>" + message + "</p>");
