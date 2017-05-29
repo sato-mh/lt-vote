@@ -134,10 +134,10 @@ foreach ($sessions_term1 as $index => $name) {
                     contentType: "application/json",
                     data: JSON.stringify(request)
                 }).then(function(data) {
-                    var message = JSON.parse(data)["message"];
-                    form.parent(".form-wrapper").html("<p>" + message + "</p>");
+                    form.parent(".form-wrapper").html("<p>投稿が完了しました。</p>");
                 }).catch(function(data) {
-                    form.parent(".form-wrapper").html("<p>エラー</p>");
+                    var message = JSON.parse(data)["error"];
+                    form.parent(".form-wrapper").html("<p>エラー: " + message + "</p>");
                 });
 
                 return false;
