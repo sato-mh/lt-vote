@@ -10,7 +10,7 @@ class VoteApp():
 
     def _request_to_vote(self, data):
         return domain.Vote(
-            id=data.get('id', None),
+            id_=data.get('id', None),
             user_id=data['userId'],
             conference_id=data['conferenceId'],
             speaker_id=data['speakerId'],
