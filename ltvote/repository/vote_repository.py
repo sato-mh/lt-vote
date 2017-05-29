@@ -8,7 +8,7 @@ class VoteRepository():
             record = orm.Vote(
                 user_id=vote.user_id,
                 conference_id=vote.conference_id,
-                sperker_id=vote.speaker_id,
+                speaker_id=vote.speaker_id,
                 term=vote.term,
                 token=vote.token
             )
@@ -17,7 +17,7 @@ class VoteRepository():
                 id=vote.id,
                 user_id=vote.user_id,
                 conference_id=vote.conference_id,
-                sperker_id=vote.speaker_id,
+                speaker_id=vote.speaker_id,
                 term=vote.term,
                 token=vote.token
             )
