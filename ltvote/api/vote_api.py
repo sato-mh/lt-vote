@@ -27,7 +27,7 @@ class VoteApp():
 
         @app.route('/votes', methods=['POST'])
         def vote():
-            data = request.json()
+            data = request.json
             vote = self._request_to_vote(data)
             with self.ormapper.create_session() as session:
                 vote_repository = self.vote_repository_factory(session)
@@ -39,7 +39,7 @@ class VoteApp():
 
         @app.route('/votes', methods=['GET'])
         def get_results():
-            data = request.json()
+            data = request.json
             with self.ormapper.create_session() as session:
                 vote_repository = self.vote_repository_factory(session)
                 votes = vote_repository.get_votes(
