@@ -31,7 +31,7 @@ class VoteApp():
             vote = self._request_to_vote(data)
             with self.ormapper.create_session() as session:
                 vote_repository = self.vote_repository_factory.create(session)
-                vote = vote_repository.update(vote)
+                vote = vote_repository.save(vote)
             headers = {'content-type': 'application/json'}
             res = vote.__dict__
             return Response(response=json.dumps(res), status=200,
