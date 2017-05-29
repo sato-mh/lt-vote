@@ -59,11 +59,10 @@ class VoteRepository():
         self.session.commit()
         return self._record_to_vote(record)
 
-    def get_votes(self, conference_id, term, token):
+    def get_votes(self, conference_id, term):
         records = self.session.query(orm.Vote).filter_by(
             conference_id=conference_id,
             term=term,
-            token=token
         ).all()
         if not records:
             return []

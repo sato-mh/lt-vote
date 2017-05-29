@@ -29,23 +29,28 @@ class VoteApp():
         def vote():
             data = request.json
             vote = self._request_to_vote(data)
-            with self.ormapper.create_session() as session:
-                vote_repository = self.vote_repository_factory.create(session)
-                vote = vote_repository.save(vote)
             headers = {'content-type': 'application/json'}
+            try:
+                with self.ormapper.create_session() as session:
+                    vote_repository = self.vote_repository_factory.create(
+                        session)
+                    vote = vote_repository.save(vote)
+            except Exception:
+                res = {'error': 'Already saved.'}
+                return Response(response=json.dumps(res), status=400,
+                                headers=headers)
             res = vote.__dict__
             return Response(response=json.dumps(res), status=200,
                             headers=headers)
 
         @app.route('/votes', methods=['GET'])
         def get_results():
-            data = request.json
+            data = request.args
             with self.ormapper.create_session() as session:
                 vote_repository = self.vote_repository_factory.create(session)
                 votes = vote_repository.get_votes(
                     conference_id=data['conferenceId'],
-                    term=data['term'],
-                    token=data['token']
+                    term=data['term']
                 )
             headers = {'content-type': 'application/json'}
 
