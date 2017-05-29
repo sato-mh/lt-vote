@@ -133,8 +133,7 @@ foreach ($sessions_term1 as $index => $name) {
                 }).then(function(data) {
                     form.parent(".form-wrapper").html("<p>投稿が完了しました。</p>");
                 }).catch(function(data) {
-                    var message = JSON.parse(data)["error"];
-                    form.parent(".form-wrapper").html("<p>エラー: " + message + "</p>");
+                    form.parent(".form-wrapper").html("<p>投稿の最大数を超えたか、投稿に失敗しました。</p>");
                 });
 
                 return false;

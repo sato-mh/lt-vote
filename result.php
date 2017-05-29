@@ -93,36 +93,5 @@ $count += 1;
 			  src="https://code.jquery.com/jquery-3.2.1.min.js"
 			  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
 			  crossorigin="anonymous"></script>
-    <script>
-        $(function () {
-            $(".session").submit(function() {
-                var form = $(this);
-                var url = "http://116.118.226.94:8080/votes";
-                var request = {
-                    userId: "<?php echo h($uuid); ?>",
-                    conferenceId: 5,
-                    speakerId: Number(form.find(".session-id").val()),
-                    term: Number(form.find(".term").val()),
-                    token: form.find(".token").val()
-                };
-
-                console.log(JSON.stringify(request));
-
-                $.ajax({
-                    type: "post",
-                    url: url,
-                    contentType: "application/json",
-                    data: JSON.stringify(request)
-                }).then(function(data) {
-                    form.parent(".form-wrapper").html("<p>投稿が完了しました。</p>");
-                }).catch(function(data) {
-                    var message = JSON.parse(data)["error"];
-                    form.parent(".form-wrapper").html("<p>エラー: " + message + "</p>");
-                });
-
-                return false;
-            });
-        });
-    </script>
 </body>
 </html>
