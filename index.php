@@ -121,10 +121,12 @@ foreach ($sessions_term1 as $index => $name) {
                 var request = {
                     userId: "<?php echo h($uuid); ?>",
                     conferenceId: 5,
-                    speakerId: Number($(this).children(".session-id").val()),
-                    term: Number($(this).children(".term").val()),
-                    token: $(this).children(".token").val()
+                    speakerId: Number(form.find(".session-id").val()),
+                    term: Number(form.find(".term").val()),
+                    token: form.find(".token").val()
                 };
+
+                console.log(JSON.stringify(request));
 
                 $.ajax({
                     type: "post",
