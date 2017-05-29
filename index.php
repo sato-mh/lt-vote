@@ -117,7 +117,7 @@ foreach ($sessions_term1 as $index => $name) {
         $(function () {
             $(".session").submit(function() {
                 var form = $(this);
-                var url = "dummy.php";
+                var url = "http://116.118.226.94:8080/votes";
                 var request = {
                     userId: "<?php echo h($uuid); ?>",
                     conferenceId: 5,
