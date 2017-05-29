@@ -1,5 +1,6 @@
 from collections import defaultdict
 from flask import Flask, Response, request
+from flask_cors import CORS
 import json
 
 from ltvote import domain
@@ -19,8 +20,10 @@ class VoteApp():
 
     def __init__(self, ormapper, vote_repository_factory):
         app = Flask(__name__)
+        CORS(app)
         self.ormapper = ormapper
         self.vote_repository_factory = vote_repository_factory
+        # origin='116.118.226.94'
 
         @app.route('/votes', methods=['POST'])
         def vote():
