@@ -1,2 +1,2 @@
-from .vote import Vote
 from .error import AlreadySavedError
+from .vote import Vote
