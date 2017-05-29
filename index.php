@@ -54,14 +54,14 @@ include_once("sessions.php");
             <div class="group is-center">
                 <h3 class="heading is-lg">前半</h3>
                 <div id="term1" class="form-wrapper group">
-                    <form method="post" class="session form">
+                    <form class="session form">
                         <div class="group">
                             <div class="field is-middle">
                             <select class="session-id select is-mobile-0">
 <?php
 foreach ($sessions_term0 as $index => $name) {
 ?>
-                                <option value="<?= $index ?>"><?php echo h($name); ?></option>
+                                <option value="<?= h($index) ?>"><?= h($name) ?></option>
 <?php
 }
 ?>
@@ -70,7 +70,7 @@ foreach ($sessions_term0 as $index => $name) {
                         </div>
                         <div class="group">
                             <input type="hidden" class="term" value="0">
-                            <input type="hidden" class="token" value="<?php echo h($_SESSION['token']); ?>">
+                            <input type="hidden" class="token" value="<?= h($_SESSION['token']) ?>">
                             <div class="btns is-center">
                                 <input type="submit" value="送信" class="btn is-plain is-primary is-round session-button">
                             </div>
@@ -82,14 +82,14 @@ foreach ($sessions_term0 as $index => $name) {
             <div class="groups is-center">
                 <h3 class="heading is-lg">後半</h3>
                 <div id="term2" class="form-wrapper group">
-                    <form method="post" class="session form">
+                    <form class="session form">
                         <div class="group">
                             <div class="field is-middle">
                             <select class="session-id select is-mobile-0">
 <?php
 foreach ($sessions_term1 as $index => $name) {
 ?>
-                                <option value="<?= $index ?>"><?php echo h($name); ?></option>
+                                <option value="<?= h($index) ?>"><?= h($name) ?></option>
 <?php
 }
 ?>
@@ -98,7 +98,7 @@ foreach ($sessions_term1 as $index => $name) {
                         </div>
                         <div class="group">
                             <input type="hidden" class="term" value="1">
-                            <input type="hidden" class="token" value="<?php echo h($_SESSION['token']); ?>">
+                            <input type="hidden" class="token" value="<?= h($_SESSION['token']) ?>">
                             <div class="btns is-center">
                                 <input type="submit" value="送信" class="btn is-plain is-primary is-round session-button">
                             </div>
@@ -106,15 +106,18 @@ foreach ($sessions_term1 as $index => $name) {
                     </form>
                 </div>
             </div>
-            
+
         </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-			  integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g="
+    <script
+			  src="https://code.jquery.com/jquery-3.2.1.min.js"
+			  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
 			  crossorigin="anonymous"></script>
     <script>
         $(function () {
-            $(".session").on("submit", function() {
+            $(".session").submit(function() {
+                var form = $(this);
+                var url = "dummy.php";
                 var request = {
                     userId: "<?php echo h($uuid); ?>",
                     conferenceId: 5,
@@ -125,15 +128,15 @@ foreach ($sessions_term1 as $index => $name) {
 
                 $.ajax({
                     type: "post",
-                    url: "",
-                    data: request,
-                    success: function(data) {
-
-                    },
-                    error: function(data) {
-                        $(this).parent(".form-wrapper").html("<p>エラー</p>");
-                    }
+                    url: url,
+                    data: request
+                }).then(function(data) {
+                    var message = JSON.parse(data)["message"];
+                    form.parent(".form-wrapper").html("<p>" + message + "</p>");
+                }).catch(function(data) {
+                    form.parent(".form-wrapper").html("<p>エラー</p>");
                 });
+
                 return false;
             });
         });
