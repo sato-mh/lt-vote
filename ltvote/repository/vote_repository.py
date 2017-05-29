@@ -45,7 +45,7 @@ class VoteRepository():
             term=vote.term
         ).first()
         if record is not None:
-            raise domain.AlreadySavedError
+            raise Exception('Already saved.')
         record = self._vote_to_record(vote)
         self.session.add(record)
         self.session.flush()

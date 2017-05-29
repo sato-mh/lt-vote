@@ -35,7 +35,7 @@ class VoteApp():
                     vote_repository = self.vote_repository_factory.create(
                         session)
                     vote = vote_repository.save(vote)
-            except domain.AlreadySavedError as e:
+            except Exception as e:
                 res = {'error': str(e)}
                 return Response(response=json.dumps(res), status=400,
                                 headers=headers)
