@@ -10,7 +10,7 @@ class VoteApp():
 
     def _request_to_vote(self, data):
         return domain.Vote(
-            id=data.get('id', None),
+            id_=data.get('id', None),
             user_id=data['userId'],
             conference_id=data['conferenceId'],
             speaker_id=data['speakerId'],
@@ -30,8 +30,8 @@ class VoteApp():
             data = request.json
             vote = self._request_to_vote(data)
             with self.ormapper.create_session() as session:
-                vote_repository = self.vote_repository_factory(session)
-                vote = vote_repository.update(vote)
+                vote_repository = self.vote_repository_factory.create(session)
+                vote = vote_repository.save(vote)
             headers = {'content-type': 'application/json'}
             res = vote.__dict__
             return Response(response=json.dumps(res), status=200,
@@ -41,7 +41,7 @@ class VoteApp():
         def get_results():
             data = request.json
             with self.ormapper.create_session() as session:
-                vote_repository = self.vote_repository_factory(session)
+                vote_repository = self.vote_repository_factory.create(session)
                 votes = vote_repository.get_votes(
                     conference_id=data['conferenceId'],
                     term=data['term'],
