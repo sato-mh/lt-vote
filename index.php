@@ -20,23 +20,7 @@ include_once("functions.php");
     <meta charset="utf-8">
     <title>第5回LT大会</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/musubii@2.2.0/docs/css/musubii.min.css">
-    <style type="text/css">
-        .hero {
-            padding: 50px;
-            background: #1c73c7;
-            color: #ffffff;
-        }
-        
-        .form-wrapper {
-            width: 600px;
-            margin: 0 auto;
-        }
-
-        .session-button {
-            padding-left: 2em;
-            padding-right: 2em;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="section">
@@ -50,6 +34,7 @@ include_once("functions.php");
 
             <div class="group is-center">
                 <h3 class="heading is-lg">前半</h3>
+<?php if ($votingTerm == 0) { ?>
                 <div id="term1" class="form-wrapper group">
                     <form class="session form">
                         <div class="group">
@@ -74,10 +59,17 @@ foreach ($sessions_term0 as $index => $name) {
                         </div>
                     </form>
                 </div>
+<?php } else {
+?>
+                <p class="group">現在投票を受け付けておりません</p>
+<?php
+}
+?>
             </div>
 
             <div class="groups is-center">
                 <h3 class="heading is-lg">後半</h3>
+<?php if ($votingTerm == 1) { ?>
                 <div id="term2" class="form-wrapper group">
                     <form class="session form">
                         <div class="group">
@@ -102,9 +94,59 @@ foreach ($sessions_term1 as $index => $name) {
                         </div>
                     </form>
                 </div>
+<?php } else {
+?>
+                <p class="group">現在投票を受け付けておりません</p>
+<?php
+}
+?>
+            </div>
+
+            <div class="groups">
+                <h2 class="heading is-xl">LT一覧</h2>
+                <h3 class="heading is-lg">前半 (17:05-)</h3>
+                <table class="table is-stripe is-line">
+                    <tr class="box is-paint">
+                        <th width="100">発表順</th>
+                        <th>LT (発表者)</th>
+                    </tr>
+<?php
+foreach ($sessions_term0 as $index => $name) {
+?>
+                    <tr>
+                        <td class="is-center"><?= h($index + 1) ?></td>
+                        <td><?= h($name) ?></td>
+                    </tr>
+<?php
+}
+?>
+                </table>
+
+                <h3 class="heading is-lg">後半 (18:15-)</h3>
+                <table class="table is-stripe is-line">
+                    <tr class="box is-paint">
+                        <th width="100">発表順</th>
+                        <th>LT (発表者)</th>
+                    </tr>
+<?php
+foreach ($sessions_term1 as $index => $name) {
+?>
+                    <tr>
+                        <td class="is-center"><?= h($index + 1) ?></td>
+                        <td><?= h($name) ?></td>
+                    </tr>
+<?php
+}
+?>
+                </table>
             </div>
 
         </div>
+
+        <div class="footer groups is-center">
+            <small>このページは <a href="https://qrac.github.io/musubii/" target="_blank">Musubii</a> を使って作られています。</small>
+        </div>
+
     </div>
     <script
 			  src="https://code.jquery.com/jquery-3.2.1.min.js"

@@ -1,0 +1,25 @@
+/* common */
+
+.hero {
+    padding: 50px;
+    background: #1c73c7;
+    color: #ffffff;
+}
+
+.footer {
+    padding: 10px;
+    background: #14599b;
+    color: #ffffff;
+}
+
+/* form */
+.form-wrapper {
+    width: 600px;
+    margin: 0 auto;
+}
+
+.session-button {
+    padding-left: 2em;
+    padding-right: 2em;
+}
+

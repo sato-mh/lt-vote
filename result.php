@@ -11,6 +11,14 @@ $result_raw1 = file_get_contents("http://116.118.226.94:8080/votes?conferenceId=
 $result1 = json_decode($result_raw1);
 $result1 = get_object_vars($result1);
 
+// $result0 = [
+//     "0" => 2,
+//     "1" => 3,
+//     "2" => 1
+// ];
+
+// $result1 = $result0;
+
 arsort($result0);
 arsort($result1);
 
@@ -21,13 +29,7 @@ arsort($result1);
     <meta charset="utf-8">
     <title>第5回LT大会 結果</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/musubii@2.2.0/docs/css/musubii.min.css">
-    <style type="text/css">
-        .hero {
-            padding: 50px;
-            background: #1c73c7;
-            color: #ffffff;
-        }        
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="section">
@@ -43,9 +45,9 @@ arsort($result1);
                 <h3 class="heading is-lg">前半</h3>
                 <table class="table is-stripe is-line is-center">
                     <tr class="box is-paint">
-                        <th>順位</th>
+                        <th width="100">順位</th>
                         <th>LT名</th>
-                        <th>得票数</th>
+                        <th width="100">得票数</th>
                     </tr>
 <?php
 $count = 1;
@@ -67,9 +69,9 @@ $count += 1;
                 <h3 class="heading is-lg">後半</h3>
                 <table class="table is-stripe is-line is-center">
                     <tr class="box is-paint">
-                        <th>順位</th>
+                        <th width="100">順位</th>
                         <th>LT名</th>
-                        <th>得票数</th>
+                        <th width="100">得票数</th>
                     </tr>
 <?php
 $count = 1;
@@ -87,6 +89,10 @@ $count += 1;
                 </table>
             </div>
 
+        </div>
+
+        <div class="footer groups is-center">
+            <small>このページは <a href="https://qrac.github.io/musubii/" target="_blank">Musubii</a> を使って作られています。</small>
         </div>
     </div>
     <script
