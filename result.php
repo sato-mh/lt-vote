@@ -60,6 +60,7 @@ foreach ($result0 as $speakerId => $point) {
                     </tr>
 <?php
 $count += 1;
+if ($count > 3) break;
 }
 ?>
                 </table>
@@ -84,6 +85,7 @@ foreach ($result1 as $speakerId => $point) {
                     </tr>
 <?php
 $count += 1;
+if ($count > 3) break;
 }
 ?>
                 </table>
