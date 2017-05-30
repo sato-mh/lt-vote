@@ -165,8 +165,6 @@ foreach ($sessions_term1 as $index => $name) {
                     token: form.find(".token").val()
                 };
 
-                console.log(JSON.stringify(request));
-
                 $.ajax({
                     type: "post",
                     url: url,
